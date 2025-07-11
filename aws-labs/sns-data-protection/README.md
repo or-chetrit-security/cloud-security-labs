@@ -11,28 +11,25 @@ Real-time data protection implementation using AWS SNS built-in ML capabilities 
 ## 🏗️ Architecture
 
 ```mermaid
-graph TD
+flowchart TD
     A[E-commerce Application] --> B[Amazon SNS Topic]
-    B --> C{Data Protection Policy}
-    D[ML-powered Detection Engine] --> C
+    B --> C[Data Protection Policy]
+    D[ML Detection Engine] --> C
     C --> E[Masked Messages]
     E --> F[Email Subscribers]
-    E --> G[SQS Subscribers]
-    E --> H[Lambda Subscribers]
+    E --> G[SQS Queue]
+    E --> H[Lambda Functions]
     C --> I[CloudWatch Audit Logs]
     
-    %% Styling
-    classDef app fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
-    classDef aws fill:#ff9800,stroke:#e65100,stroke-width:2px,color:#fff
-    classDef security fill:#4caf50,stroke:#2e7d32,stroke-width:2px,color:#fff
-    classDef subscribers fill:#9c27b0,stroke:#6a1b9a,stroke-width:2px,color:#fff
-    classDef logs fill:#607d8b,stroke:#37474f,stroke-width:2px,color:#fff
-    
-    class A app
-    class B,D aws
-    class C,E security
-    class F,G,H subscribers
-    class I logs
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#e8f5e8
+    style F fill:#f3e5f5
+    style G fill:#f3e5f5
+    style H fill:#f3e5f5
+    style I fill:#fce4ec
 
 ## 🛡️ Security Controls
 
