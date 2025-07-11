@@ -10,29 +10,38 @@ Real-time data protection implementation using AWS SNS built-in ML capabilities 
 
 ## 🏗️ Architecture
 
-```mermaid
-graph TB
-    A[E-commerce Application<br/>Credit Card Data] --> B[Amazon SNS Topic<br/>CreditCardProtectionDemo]
-    B --> C[Data Protection Policy<br/>Inbound: Audit 99%<br/>Outbound: Mask]
-    D[AWS ML Engine<br/>Pattern Recognition] --> C
-    C --> E[Protected Messages<br/>4539894458086459 → XXXXXXXXXXXXXXXX]
-    E --> F[Email Subscribers]
-    E --> G[SQS Subscribers]
-    E --> H[Lambda Subscribers]
-    C --> I[CloudWatch Logs<br/>Detection Events<br/>Message IDs<br/>Policy Violations]
-    I --> J[Compliance<br/>PCI DSS 3.4<br/>GDPR Art. 32<br/>SOX Controls]
-    
-    classDef app fill:#232F3E,stroke:#FF9900,stroke-width:2px,color:#fff
-    classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:#000
-    classDef security fill:#D13212,stroke:#232F3E,stroke-width:2px,color:#fff
-    classDef subscribers fill:#7AA116,stroke:#232F3E,stroke-width:2px,color:#fff
-    classDef compliance fill:#9D5AAE,stroke:#232F3E,stroke-width:2px,color:#fff
-    
-    class A app
-    class B,D aws
-    class C,E security
-    class F,G,H subscribers
-    class I,J compliance
+┌─────────────────────┐
+│  E-commerce App     │
+│  (Credit Card Data) │
+└──────────┬──────────┘
+│ sns:Publish
+▼
+┌─────────────────────┐    ┌─────────────────────┐
+│   Amazon SNS Topic  │◄───│   ML Detection      │
+│ CreditCardProtDemo  │    │   Engine            │
+└──────────┬──────────┘    └─────────────────────┘
+│
+▼
+┌─────────────────────┐
+│ Data Protection     │
+│ Policy              │
+│ • Inbound: Audit    │
+│ • Outbound: Mask    │
+└──────────┬──────────┘
+│
+▼
+┌─────────────────────┐    ┌─────────────────────┐
+│ Masked Messages     │───►│ CloudWatch Logs     │
+│ XXXXXXXXXXXXXXXX    │    │ Audit Trail         │
+└──────────┬──────────┘    └─────────────────────┘
+│
+▼
+┌─────────────────────┐
+│    Subscribers      │
+│ • Email Endpoints   │
+│ • SQS Queues        │
+│ • Lambda Functions  │
+└─────────────────────┘
 
 ## 🛡️ Security Controls
 
