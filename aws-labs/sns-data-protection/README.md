@@ -10,7 +10,8 @@ Real-time data protection implementation using AWS SNS built-in ML capabilities 
 
 ## 🏗️ Architecture
 
-<img width="3840" height="3241" alt="PII-Diagram" src="https://github.com/user-attachments/assets/6922930f-36b2-4659-b7dd-b8d110f166b2" />
+<img width="3840" height="3756" alt="diagram1" src="https://github.com/user-attachments/assets/42db142a-1743-48de-8af2-79b6f64bcb2d" />
+
 
 ## 🛡️ Security Controls
 
