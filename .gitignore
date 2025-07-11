@@ -64,7 +64,6 @@ __pycache__/
 build/
 dist/
 *.egg-info/
-
 # Documentation builds
 docs/_build/
 site/
