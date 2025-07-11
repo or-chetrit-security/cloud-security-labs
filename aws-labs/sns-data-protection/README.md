@@ -11,25 +11,28 @@ Real-time data protection implementation using AWS SNS built-in ML capabilities 
 ## 🏗️ Architecture
 
 ```mermaid
-flowchart TD
-    A[E-commerce Application] --> B[Amazon SNS Topic]
-    B --> C[Data Protection Policy]
-    D[ML Detection Engine] --> C
-    C --> E[Masked Messages]
+graph TB
+    A[E-commerce Application<br/>Credit Card Data] --> B[Amazon SNS Topic<br/>CreditCardProtectionDemo]
+    B --> C[Data Protection Policy<br/>Inbound: Audit 99%<br/>Outbound: Mask]
+    D[AWS ML Engine<br/>Pattern Recognition] --> C
+    C --> E[Protected Messages<br/>4539894458086459 → XXXXXXXXXXXXXXXX]
     E --> F[Email Subscribers]
-    E --> G[SQS Queue]
-    E --> H[Lambda Functions]
-    C --> I[CloudWatch Audit Logs]
+    E --> G[SQS Subscribers]
+    E --> H[Lambda Subscribers]
+    C --> I[CloudWatch Logs<br/>Detection Events<br/>Message IDs<br/>Policy Violations]
+    I --> J[Compliance<br/>PCI DSS 3.4<br/>GDPR Art. 32<br/>SOX Controls]
     
-    style A fill:#e1f5fe
-    style B fill:#fff3e0
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-    style E fill:#e8f5e8
-    style F fill:#f3e5f5
-    style G fill:#f3e5f5
-    style H fill:#f3e5f5
-    style I fill:#fce4ec
+    classDef app fill:#232F3E,stroke:#FF9900,stroke-width:2px,color:#fff
+    classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:#000
+    classDef security fill:#D13212,stroke:#232F3E,stroke-width:2px,color:#fff
+    classDef subscribers fill:#7AA116,stroke:#232F3E,stroke-width:2px,color:#fff
+    classDef compliance fill:#9D5AAE,stroke:#232F3E,stroke-width:2px,color:#fff
+    
+    class A app
+    class B,D aws
+    class C,E security
+    class F,G,H subscribers
+    class I,J compliance
 
 ## 🛡️ Security Controls
 
