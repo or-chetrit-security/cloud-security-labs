@@ -1,0 +1,27 @@
+# Copy this file to terraform.tfvars and customize for your environment
+
+# Environment Configuration
+environment = "dev"
+aws_region  = "us-east-1"
+
+# SNS Configuration
+topic_name   = "data-protection-demo"
+display_name = "Data Protection Demo"
+
+# Data Protection Settings
+mask_character      = "*"
+audit_sample_rate   = 99
+
+# CloudWatch Configuration
+log_retention_days = 90
+
+# Notification Settings (optional)
+notification_email = "your-email@example.com"
+
+# Security Settings
+enable_encryption        = true
+kms_key_deletion_window = 7
+
+# Tagging
+cost_center = "Security"
+owner       = "CloudSecurityTeam"
