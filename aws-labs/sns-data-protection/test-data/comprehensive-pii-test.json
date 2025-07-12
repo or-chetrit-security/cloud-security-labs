@@ -1,0 +1,58 @@
+{
+  "testMetadata": {
+    "testName": "comprehensive-pii-detection",
+    "description": "Multi-PII detection validation across 4 supported data types",
+    "date": "2025-07-12",
+    "expectedDetections": 4,
+    "expectedMasking": 3
+  },
+  "testPayload": {
+    "customer": {
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@example.com",
+      "phone": "555-987-6543",
+      "payment": {
+        "cardNumber": "4539894458086459",
+        "expiryDate": "12/25"
+      }
+    },
+    "transaction": {
+      "amount": 299.99,
+      "currency": "USD"
+    }
+  },
+  "expectedResults": {
+    "creditCard": {
+      "input": "4539894458086459",
+      "expected": "****************",
+      "protection": "masked"
+    },
+    "phone": {
+      "input": "555-987-6543", 
+      "expected": "***-***-****",
+      "protection": "masked"
+    },
+    "email": {
+      "input": "sarah.johnson@example.com",
+      "expected": "*************************", 
+      "protection": "masked"
+    },
+    "name": {
+      "input": "Sarah Johnson",
+      "expected": "Sarah Johnson",
+      "protection": "audit-only"
+    }
+  },
+  "complianceMapping": {
+    "pciDss": {
+      "requirement": "3.4",
+      "description": "Render PAN unreadable",
+      "coverage": "creditCard"
+    },
+    "gdpr": {
+      "article": "32", 
+      "description": "Security of processing",
+      "coverage": "phone, email"
+    }
+  }
+}
