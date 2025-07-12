@@ -52,7 +52,7 @@ Every lab includes:
 
 ## 🔗 Connect & Collaborate
 
-- **LinkedIn:** [Your LinkedIn Profile] - Let's discuss cloud security challenges
+- **LinkedIn:** www.linkedin.com/in/orisraelche - Let's discuss cloud security challenges
 - **Questions?** Open an issue - I respond to all technical inquiries
 - **Suggestions?** I'm always looking for relevant security scenarios to implement
 
