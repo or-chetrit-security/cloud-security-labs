@@ -1,13 +1,12 @@
 {
-  "Description": "Comprehensive PII protection across multiple data types",
+  "Description": "Multi-PII protection with SNS supported identifiers",
   "Version": "2021-06-01",
   "Statement": [
     {
-      "Sid": "comprehensive-pii-audit",
+      "Sid": "multi-pii-audit",
       "DataDirection": "Inbound",
       "DataIdentifier": [
         "arn:aws:dataprotection::aws:data-identifier/CreditCardNumber",
-        "arn:aws:dataprotection::aws:data-identifier/SSN",
         "arn:aws:dataprotection::aws:data-identifier/PhoneNumber-US",
         "arn:aws:dataprotection::aws:data-identifier/EmailAddress",
         "arn:aws:dataprotection::aws:data-identifier/Name"
@@ -16,20 +15,21 @@
         "Audit": {
           "FindingsDestination": {
             "CloudWatchLogs": {
-              "LogGroup": "/aws/vendedlogs/sns-comprehensive-audit"
+              "LogGroup": "/aws/vendedlogs/sns-data-protection-audit"
             }
           },
-          "SampleRate": "100"
+          "SampleRate": "99"
         }
       },
       "Principal": ["*"]
     },
     {
-      "Sid": "selective-masking",
+      "Sid": "mask-sensitive-pii",
       "DataDirection": "Outbound",
       "DataIdentifier": [
         "arn:aws:dataprotection::aws:data-identifier/CreditCardNumber",
-        "arn:aws:dataprotection::aws:data-identifier/SSN"
+        "arn:aws:dataprotection::aws:data-identifier/PhoneNumber-US",
+        "arn:aws:dataprotection::aws:data-identifier/EmailAddress"
       ],
       "Operation": {
         "Deidentify": {
@@ -39,21 +39,7 @@
         }
       },
       "Principal": ["*"]
-    },
-    {
-      "Sid": "contact-redaction",
-      "DataDirection": "Outbound",
-      "DataIdentifier": [
-        "arn:aws:dataprotection::aws:data-identifier/PhoneNumber-US",
-        "arn:aws:dataprotection::aws:data-identifier/EmailAddress"
-      ],
-      "Operation": {
-        "Deidentify": {
-          "RedactionConfig": {}
-        }
-      },
-      "Principal": ["*"]
     }
   ],
-  "Name": "enterprise-pii-protection"
+  "Name": "multi-pii-protection"
 }
