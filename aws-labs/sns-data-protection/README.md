@@ -6,6 +6,9 @@
 
 Comprehensive AWS SNS data protection implementation demonstrating real-time ML-powered PII detection and selective masking across multiple data types.
 
+**Disclaimer**<br/>These labs were created in **my personal AWS account** for educational demonstration only. They do **not** represent any production environment or employer implementation, and no customer data is involved.
+
+
 **Status:** ✅ **Phase 1 Complete - Enhanced Detection Implemented**
 
 ## 🏗️ Architecture
@@ -95,6 +98,11 @@ Visual proof of:
 | Performance Impact | ✅ Production Ready | <5ms latency |
 | Audit Completeness | ✅ Production Ready | Comprehensive logging |
 | Compliance Coverage | ✅ Production Ready | Multi-framework support |
+
+### Cost & Retention<br/>
+• A t3.micro SNS topic, KMS key, and CloudWatch Logs with 30-day retention cost ~\$3–5/month in the eu-central-1 region.<br/>
+• Adjust `log_retention_days` to fit your compliance policy and budget.
+
 
 ## 🔗 Implementation Details
 
